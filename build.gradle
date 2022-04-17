@@ -3,6 +3,8 @@ plugins {
     id "application"
 }
 
+def mainClassName = "jga.example.gradle.Main"
+
 repositories {
     mavenCentral()
 }
@@ -12,19 +14,19 @@ dependencies {
 }
 
 application {
-    mainClass = 'jga.example.gradle.Main'
+    mainClass = mainClassName
 }
 
 jar {
     manifest {
-        attributes 'Main-Class': 'jga.example.gradle.Main'
+        attributes 'Main-Class': mainClassName
     }
 }
 
 task uberJar (type: Jar) {
   archiveClassifier = 'uber'
   manifest {
-    attributes 'Main-Class': 'jga.example.gradle.Main'
+    attributes 'Main-Class': mainClassName
   }
   from {
     configurations.runtimeClasspath
